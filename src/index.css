@@ -30,6 +30,22 @@ header
     padding: 30px 100px;
     position: relative;
 }
+.start {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.start .next-prev {
+    background-image: url('question.jpg');
+    background-repeat: no-repeat;
+    background-position: 5%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .step-count
 {
     width: 100%;
@@ -102,7 +118,7 @@ header
     display: inline-block;
     background-color: rgb(227, 227, 227);
     height: 4px;
-    width: 100px;
+    width: 10px;
     position: relative;
     z-index: 0;
 
@@ -185,20 +201,20 @@ form::before
     font-weight: bold;
     text-align: center;
     width: 75%;
-    margin: 70px auto;
-    margin-bottom: 145px;
+    margin: 0px auto;
+    margin-bottom: 50px;
 }
 .radio-btn
 {
     position: relative;
-    width: 93%;
-    height: 270px;
+    width: 91%;
+    height: 200px;
     text-align: center;
     display: grid;
     align-content: center;
     padding: 0 80px;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
 }
 
@@ -232,9 +248,9 @@ form::before
 
 .radio-btn label
 {
-    font-size: 25px;
+    font-size: 18px;
     color: var(--field-color);
-    font-weight: bold;
+    font-weight: bolder;
     pointer-events: none;
     transition: 0.5s;
     position: relative;
@@ -297,14 +313,18 @@ form::before
 {
     content: "D";
 }
+.selected {
+    border-color: var(--primary-color); 
+     color: var(--primary-color);
+}
 .radio-btn input:checked
 {
-    border-color: var(--primary-color);
+    /* border-color: var(--primary-color); */
 }
 
 .radio-btn input:checked~label
 {
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
 }
 .radio-btn input:checked::before
 {
@@ -315,9 +335,9 @@ form::before
 {
     width: 97%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 0 auto;
-    height: 200px;
+    height: 100px;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -470,30 +490,74 @@ form::before
     color: rgb(255, 255, 255);
     border: 0;
 }
+#error-page {
+    width: 30%;
+    text-align: center;
+    margin: 25vh auto;
+}
 
-
+.results > h1 {
+    width: 600px;
+    margin: 150px auto 0 auto;
+}
+.results span {
+    color: var(--primary-color);
+}
+.results .correct-wrong div:first-child {
+    border-right: 1px solid var(--primary-color);
+    margin-bottom: 100px;
+}
+.results .correct-wrong div {
+    padding: 0 50px;
+    width: 100%;
+}
+.results .correct-wrong div h1 {
+    text-align: center;
+}
+.results .correct-wrong {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+/* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
+.loader {
+    width: 50px;
+    height: 24px;
+    background: radial-gradient(circle closest-side, currentColor 90%, #0000) 0%
+        50%,
+      radial-gradient(circle closest-side, currentColor 90%, #0000) 50% 50%,
+      radial-gradient(circle closest-side, currentColor 90%, #0000) 100% 50%;
+    background-size: calc(100% / 3) 12px;
+    background-repeat: no-repeat;
+    animation: loader 1s infinite linear;
+  }
+  
+  @keyframes loader {
+    20% {
+      background-position: 0% 0%, 50% 50%, 100% 50%;
+    }
+    40% {
+      background-position: 0% 100%, 50% 0%, 100% 50%;
+    }
+    60% {
+      background-position: 0% 50%, 50% 100%, 100% 0%;
+    }
+    80% {
+      background-position: 0% 50%, 50% 50%, 100% 100%;
+    }
+  }
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    gap: 1.6rem;
+  
+    color: var(--primary-gradiant);
+    font-size: 1.4rem;
+  }  
 
 /* responsive */
-
-
-/* large screens */
-@media (min-width: 1600px)
-{
-
-}
-
-
-@media (max-width: 1500px)
-{
-
-}
-
-
-/* Desktops/Laptops */
-@media (max-width: 1200px)
-{
-
-}
 
 /* Laptops */
 @media (max-width: 1024px)
@@ -520,7 +584,9 @@ form::before
         font-size: 15px;
     }
 
-
+    .start .next-prev{
+        background-image: none;
+    }
 
     .thankyou-page-inner h1
     {
@@ -540,6 +606,19 @@ form::before
     .subscribe button
     {
         width: 50%;
+    }
+    .results .correct-wrong {
+       flex-direction: column;
+    }
+    .results .correct-wrong div {
+        width: 100%;
+    }
+    .results > h1 {
+        width: auto;
+        padding-left: 20px;
+    }
+    .results .correct-wrong div:first-child {
+        border: none;
     }
 }
 
@@ -605,13 +684,27 @@ form::before
     animation-delay: 400ms;
 }
 
-.active::before, .active .step-number::before
+.active::before
 {
+    animation: left-right-line 0.5s linear forwards;
+}
+.active .step-number::before {
     animation: left-right 0.5s linear forwards;
 }
 .active::before
 {
     animation-delay: 0.5s;
+}
+@keyframes left-right-line
+{
+    from
+    {
+        width: 0;
+    }
+    to
+    {
+        width: 10px;
+    }
 }
 @keyframes left-right
 {
@@ -742,11 +835,11 @@ form::before
     }
     .active::before
     {
-        width: 70px !important;
+        width: 10px !important;
     }
     .step-count-bar::after
     {
-        width: 70px;
+        width: 10px;
     }
     .quiz-question
     {
@@ -781,7 +874,7 @@ form::before
 {
     .quiz-question
     {
-        margin-top: 250px;
+        margin-top: 50px;
     }
     .tab-50
     {
@@ -797,11 +890,7 @@ form::before
     }
     .timer
     {
-        position: static;
-        width: 100%;
-        display: grid;
-        height: 100%;
-
+        display: none;
     }
     .timer-inner
     {

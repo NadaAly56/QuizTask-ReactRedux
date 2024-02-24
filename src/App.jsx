@@ -1,12 +1,10 @@
-import Header from './components/header/Header'
+import Layout from './Layout'
+
 
 function App() {
-
+ 
   return (
-    <main className="overflow-hidden">
-    <Header />
-  </main>
-  
+   <Layout />
   )
 }
 
