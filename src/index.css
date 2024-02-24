@@ -424,7 +424,22 @@ form::before
     color: var(--primary-gradiant);
     font-size: 1.4rem;
   }  
-
+  .thankyouheader
+  {
+      background-color: var(--primary-color);
+      width: 100%;
+      min-height: 100px;
+      text-align: center;
+      display: grid;
+      align-content: center;
+      font-size: 25px;
+      color: rgb(255, 255, 255);
+      font-weight: normal;
+      position: absolute;
+      top: 0;
+      left: 0;
+  
+  }
 /* responsive */
 
 /* Laptops */
