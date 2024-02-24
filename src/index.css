@@ -317,15 +317,7 @@ form::before
     border-color: var(--primary-color); 
      color: var(--primary-color);
 }
-.radio-btn input:checked
-{
-    /* border-color: var(--primary-color); */
-}
 
-.radio-btn input:checked~label
-{
-    /* color: var(--primary-color); */
-}
 .radio-btn input:checked::before
 {
     border-color: var(--primary-color);
